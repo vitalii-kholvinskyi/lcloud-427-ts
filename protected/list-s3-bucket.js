@@ -1,5 +1,7 @@
+// Check bucket specified
 if(!process.argv[3]){
-    console.error('ERROR: Please specify name.');
+    console.error('ERROR: Please specify bucket name.');
+    process.exit(1);
 }
 
 const AWS = require('aws-sdk');
@@ -28,6 +30,7 @@ const s3 = new AWS.S3({
                 marker = response.Contents.slice(-1)[0].Key;
             }
         }catch(err){
+            isTruncated = false;
             console.log(err);
         }
     }
