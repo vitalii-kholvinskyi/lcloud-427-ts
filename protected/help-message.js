@@ -7,6 +7,7 @@ Too few arguments or unknown action. Please check this help message:
     --list-s3-bucket ":name"              - list all files in an S3 Bucket ":name"
     --upload-file ":name" "/path/to/file" - upload file to bucket ":name"
     --list-filtered ":name" ":filter"     - list files from ":name" taht match ":filter"
+    --delete-objects ":name" ":filter"    - delete objects from bucket by filter
 `;
 console.log(message);
 
