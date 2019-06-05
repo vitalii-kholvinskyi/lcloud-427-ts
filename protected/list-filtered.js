@@ -4,9 +4,15 @@ if(!process.argv[3]){
     process.exit(1);
 }
 
+// Check filter cpecified
+if(!process.argv[4]){
+    console.error('ERROR: Please specify filter.');
+    process.exit(1);
+}
+
 const {accessKeyID, secretAccessKey} = require('./access.js');
-const AWS = require('aws-sdk');
-const s3  = new AWS.S3({
+const AWS  = require('aws-sdk');
+const s3   = new AWS.S3({
     region:          'eu-west-1',
     accessKeyId:     accessKeyID,
     secretAccessKey: secretAccessKey
@@ -17,7 +23,7 @@ const s3  = new AWS.S3({
     let isTruncated = true;
 
     while(isTruncated){
-        let params = {Bucket: process.argv[3]};
+        let params = {Marker: process.argv[4], Bucket: process.argv[3]};
 
         try{
             const response = await s3.listObjects(params).promise();
